@@ -23,7 +23,7 @@ export function createCountryInfoMarkup({
         <h1 class="country-info__title">${officialName}</h1>
       </div>
       <div class="country-info__info">
-        <p class="country-info__text"><b>Capital: </b>${capital}</p>
+        <p class="country-info__text"><b>Capital: </b>${capital.join(', ')}</p>
         <p class="country-info__text"><b>Population: </b>${population}</p>
         <p class="country-info__text country-info__text--languages">
           <b>Languages: </b>
