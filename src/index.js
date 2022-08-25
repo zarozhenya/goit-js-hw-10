@@ -34,7 +34,7 @@ const renderCountry = country => {
   refs.countryInfo.insertAdjacentHTML('beforeend', markup);
 };
 
-const onError = err => {
+const onError = () => {
   Notify.failure('Oops, there is no country with that name');
 };
 const onSuccess = data => {
@@ -49,13 +49,18 @@ const onSuccess = data => {
   }
 };
 
-const onFieldInput = e => {
+const onFieldInput = async e => {
   clearContainers();
   const value = e.target.value.trim();
   if (value === '') {
     return;
   }
-  fetchCountries(value).then(onSuccess).catch(onError);
+  try {
+    const data = await fetchCountries(value);
+    onSuccess(data);
+  } catch {
+    onError();
+  }
 };
 refs.searchField.addEventListener(
   'input',
